@@ -7,14 +7,13 @@ import {
   Keyboard,
 } from 'react-native';
 import {styles} from '../style';
-import {TextField, AppBar,UIButton} from '../components';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackParam } from '../../App';
-import { useNavigation } from '@react-navigation/native';
+import {TextField, AppBar, UIButton} from '../components';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {StackParam} from '../../App';
+import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
-
-  const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackParam>>();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +24,7 @@ const Login = () => {
         <AppBar
           title="Login"
           suffix="Sign Up"
-          onPress={() => navigation.navigate('Login')}
+          onSuffixPress={() => navigation.navigate('SignUp')}
         />
         <TextField name={email} setName={setEmail} placeholder="Email" />
         <TextField
@@ -51,4 +50,3 @@ const Login = () => {
 };
 
 export default Login;
-

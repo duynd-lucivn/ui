@@ -3,4 +3,16 @@ import AppBar from './AppBar';
 import SectionListBasics from './FeedNews';
 import UIButton from './UIButton';
 import ContentListBasics from './Content';
-export {TextField, AppBar, SectionListBasics, UIButton, ContentListBasics};
+import MarketListBasics from './Market';
+import ProfileDetail from './Profile';
+import Avatar from './Avatar';
+export {
+  TextField,
+  AppBar,
+  SectionListBasics,
+  UIButton,
+  ContentListBasics,
+  MarketListBasics,
+  ProfileDetail,
+  Avatar,
+};

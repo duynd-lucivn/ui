@@ -5,17 +5,20 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import {styles} from '../style';
-import {TextField, AppBar,UIButton} from '../components';
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import { StackParam } from '../../App';
-
+import {TextField, AppBar, UIButton} from '../components';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import {StackParam} from '../../App';
 
 function SignUp() {
-const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackParam>>();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,9 +31,10 @@ const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
         <AppBar
           title="Sign Up"
           suffix="Login"
-          // icon="SolidIcons.xmark"
-          onPress={() => navigation.navigate('Login')}
+          icon="true"
+          onSuffixPress={() => navigation.navigate('Login')}
         />
+
         <TextField name={name} setName={setName} placeholder="Name" />
         <TextField name={email} setName={setEmail} placeholder="Email" />
         <TextField
@@ -51,7 +55,13 @@ const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
           isSelected={true}
           onPress={() => navigation.navigate('Login')}
         />
-        <Text style={{color: '#5DB075', textAlign: 'center'}}>
+        <Text
+          style={{
+            color: '#5DB075',
+            textAlign: 'center',
+            fontSize: 16,
+            fontWeight: '600',
+          }}>
           Forgot your password?
         </Text>
       </View>
@@ -61,15 +71,17 @@ const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
 
 export default SignUp;
 
-
-
-type CheckBoxElement ={
-  isSelected:boolean, 
-  text:string,
-    icon?:string,
-    setSelection: (isSelected:boolean)=>void,
-}
-const CheckBoxWithText = ({isSelected, setSelection, text}:CheckBoxElement) => {
+type CheckBoxElement = {
+  isSelected: boolean;
+  text: string;
+  icon?: string;
+  setSelection: (isSelected: boolean) => void;
+};
+const CheckBoxWithText = ({
+  isSelected,
+  setSelection,
+  text,
+}: CheckBoxElement) => {
   return (
     <View style={styles.checkboxContainer}>
       <CheckBox
@@ -81,4 +93,3 @@ const CheckBoxWithText = ({isSelected, setSelection, text}:CheckBoxElement) => {
     </View>
   );
 };
-

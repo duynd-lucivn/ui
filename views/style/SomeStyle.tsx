@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     width: '100%',
     height: 100,
-    fontSize: 16,
     justifyContent: 'space-between',
+    // alignContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
     fontFamily: 'Inter',
@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
 
   headerTitle: {
     fontSize: 30,
+
     fontWeight: '600',
     color: '#000',
   },
 
   headerSubTitle: {
+    fontSize: 16,
     fontWeight: '500',
     color: '#5DB075',
   },
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderColor: '#E5E5E5',
     borderWidth: 1,
-    paddingLeft: 16,
+    paddingHorizontal: 16,
     marginVertical: 8,
     borderRadius: 8,
   },
@@ -78,6 +80,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 16,
     right: 16,
+  },
+  containerTwo: {
+    backgroundColor: '#5DB075',
+    width: '100%',
+    height: 245,
+    paddingHorizontal: 16,
+  },
+  logo: {
+    width: 16,
+    height: 16,
   },
 });
 

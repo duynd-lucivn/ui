@@ -1,30 +1,23 @@
 import React, {useState} from 'react';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
-import {
-  Text,
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
-  SectionList,
-} from 'react-native';
+
+import {View, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import FontAwesome, {
-  RegularIcons,
-  SolidIcons,
-  BrandIcons,
-} from 'react-native-fontawesome';
+
 import {styles} from '../style';
-import {TextField, AppBar, SectionListBasics,ContentListBasics} from '../components';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import { StackParam } from '../../App';
+import {
+  TextField,
+  AppBar,
+  SectionListBasics,
+  ContentListBasics,
+  MarketListBasics,
+  ProfileDetail,
+  Avatar,
+} from '../components';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import {StackParam} from '../../App';
 function HomeScreen() {
-  const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackParam>>();
 
   const [name, setName] = useState('');
 
@@ -36,7 +29,7 @@ function HomeScreen() {
           suffix="Filter"
           prefix="Back"
           prefixOnPress={() => navigation.navigate('MyDrawer')}
-          onPress={() => navigation.navigate('Login')}
+          onSuffixPress={() => navigation.navigate('Login')}
         />
         <TextField
           name={name}
@@ -50,25 +43,13 @@ function HomeScreen() {
   );
 }
 
-function SettingsScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 function Content() {
   const [name, setName] = useState('');
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.default}>
-        <AppBar
-          title="Content"
-          suffix="Filter"
-          prefix="Back"
-        
-        />
+        <AppBar title="Content" suffix="Filter" prefix="Back" />
         <TextField
           name={name}
           setName={setName}
@@ -81,7 +62,7 @@ function Content() {
   );
 }
 function Market() {
-  const navigation =useNavigation<NativeStackNavigationProp<StackParam>>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackParam>>();
 
   const [name, setName] = useState('');
 
@@ -93,7 +74,7 @@ function Market() {
           suffix="Filter"
           prefix="Back"
           prefixOnPress={() => navigation.navigate('MyDrawer')}
-          onPress={() => navigation.navigate('Login')}
+          onSuffixPress={() => navigation.navigate('Login')}
         />
         <TextField
           name={name}
@@ -101,9 +82,29 @@ function Market() {
           placeholder="Search"
           textStyle={styles.textFieldSearchStyle}
         />
-        <SectionListBasics />
+        <MarketListBasics />
       </View>
     </TouchableWithoutFeedback>
+  );
+}
+function Profile() {
+  const navigation = useNavigation<NativeStackNavigationProp<StackParam>>();
+
+  const [name, setName] = useState('');
+  return (
+    <View>
+      <View style={styles.containerTwo}>
+        <AppBar
+          color={true}
+          title="Profile"
+          suffix="Logout"
+          prefix="Settings"
+          onSuffixPress={() => navigation.navigate('Login')}
+        />
+        <Avatar />
+      </View>
+      <ProfileDetail />
+    </View>
   );
 }
 const Tab = createBottomTabNavigator();
@@ -113,17 +114,15 @@ export default function HomeApp() {
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
-
+        tabBarShowLabel: false,
+        tabBarStyle: {height: 80},
         tabBarIcon: ({focused, color, size}) => {
-
           return (
             <View
               style={[
                 styles.iconStyle,
-                 {backgroundColor: focused?'#5DB075':'#E8E8E8'}
-              ]}>
-          
-            </View>
+                {backgroundColor: focused ? '#5DB075' : '#E8E8E8'},
+              ]}></View>
           );
         },
         tabBarActiveTintColor: 'tomato',
@@ -132,8 +131,7 @@ export default function HomeApp() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Content" component={Content} />
       <Tab.Screen name="Market" component={Market} />
-
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
